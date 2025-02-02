@@ -30,7 +30,7 @@ resource "aws_s3_bucket_public_access_block" "static_site_bucket" {
   restrict_public_buckets   = false
 }
 
-resource "aws_s3_bucket_ownershop_controls" "site_static_bucket" {
+resource "aws_s3_bucket_ownership_controls" "site_static_bucket" {
   bucket = aws_s3_bucket.static_site_bucket.id
 
   rule {
@@ -45,7 +45,7 @@ resource "aws_s3_bucket_acl" "static_site_bucket" {
   depends_on = [ 
     aws_s3_bucket.static_site_bucket, 
     aws_s3_bucket_public_access_block.static_site_bucket,
-    aws_s3_bucket_ownershop_controls.site_static_bucket
+    aws_s3_bucket_ownership_controls.site_static_bucket
   ]
 }
 
